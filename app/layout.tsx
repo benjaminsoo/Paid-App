@@ -3,9 +3,11 @@ import './globals.css'
 import { AuthProvider } from '@/lib/auth'
 
 export const metadata: Metadata = {
-  title: 'v0 App',
-  description: 'Created with v0',
-  generator: 'v0.dev',
+  title: 'Paid.',
+  description: 'One link. All your payment methods.',
+  icons: {
+    icon: '/favicon.svg',
+  },
 }
 
 export default function RootLayout({
@@ -15,6 +17,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="overflow-hidden">
+      <head>
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+      </head>
       <body suppressHydrationWarning className="overflow-hidden h-screen">
         <AuthProvider>
           {children}

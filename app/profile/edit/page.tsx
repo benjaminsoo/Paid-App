@@ -241,9 +241,8 @@ export default function EditProfilePage() {
       }
       
       setSuccess(true);
-      setTimeout(() => {
-        router.push(`/${userProfile.username}`);
-      }, 1500);
+      // Redirect immediately to profile page
+      router.push(`/profile`);
     } catch (err) {
       console.error("Error updating profile:", err);
       setError("Failed to update profile. Please try again.");

@@ -2,6 +2,7 @@ import PaymentOption from "@/components/payment-option"
 import ProfileHeader from "@/components/profile-header"
 import { firestore } from "@/lib/firebase"
 import { doc, getDoc } from "firebase/firestore"
+import Link from "next/link"
 
 // Define interfaces for our data structures
 export interface PaymentOptionType {
@@ -101,6 +102,15 @@ export default async function UserProfile({ params }: { params: { username: stri
 
   return (
     <main className="h-screen overflow-y-auto overflow-x-hidden overscroll-behavior-y-none bg-[rgb(var(--profile-background-rgb))] text-white">
+      {/* Back to Home button */}
+      <div className="absolute top-6 left-6 z-20">
+        <Link href="/" className="flex items-center justify-center w-10 h-10 rounded-full bg-gradient-to-br from-[rgba(var(--accent-color),0.8)] to-[rgba(var(--accent-color),0.6)] hover:from-[rgba(var(--accent-color),0.9)] hover:to-[rgba(var(--accent-color),0.7)] text-white shadow-[0_4px_12px_rgba(var(--accent-color),0.2)] hover:shadow-[0_4px_20px_rgba(var(--accent-color),0.4)] border border-[rgba(var(--accent-color),0.3)] transition-all duration-200 active:translate-y-0.5">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M19 12H5M12 19l-7-7 7-7"/>
+          </svg>
+        </Link>
+      </div>
+
       <ProfileHeader
         name={userData.profile.name || ""}
         location={userData.profile.location || ""}

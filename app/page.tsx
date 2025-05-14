@@ -223,69 +223,17 @@ export default function Home() {
                         {/* Payment options */}
                         <div className="px-4 py-4 w-full">
                           <div className="space-y-3">
-                            {userData.paymentOptions.map((option: PaymentOptionForDemo, index: number) => {
-                              // Generate payment URL based on the payment method
-                              let paymentUrl = "#";
-                              const username = option.handle.startsWith('@') ? option.handle.substring(1) : 
-                                      option.handle.startsWith('$') ? option.handle.substring(1) : 
-                                      option.handle.includes('@') ? option.handle.split('@')[0] : option.handle;
-                              
-                              switch(option.name.toLowerCase()) {
-                                case 'venmo':
-                                  paymentUrl = `https://account.venmo.com/u/${username}`;
-                                  break;
-                                case 'cash app':
-                                  paymentUrl = `https://cash.app/$${username}`;
-                                  break;
-                                case 'paypal':
-                                  if (option.handle.includes('@')) {
-                                    paymentUrl = `https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=${encodeURIComponent(option.handle)}&amount=${option.paypalAmount || "0"}&currency_code=USD`;
-                                  } else {
-                                    paymentUrl = `https://www.paypal.com/paypalme/${username}${option.paypalAmount ? `/${option.paypalAmount}` : ''}`;
-                                  }
-                                  break;
-                                case 'zelle':
-                                  paymentUrl = "https://www.zellepay.com/";
-                                  break;
-                                case 'apple pay':
-                                case 'apple cash':
-                                  paymentUrl = "https://www.apple.com/apple-cash/";
-                                  break;
-                                default:
-                                  paymentUrl = "#";
-                              }
-                              
-                              return (
-                                <a 
-                                  key={index}
-                                  href={paymentUrl}
-                                  target="_blank"
-                                  rel="noopener noreferrer"
-                                  className="block"
-                                >
-                                  <div className="group flex items-center p-3 rounded-xl iphone-card border border-[rgba(255,255,255,0.05)] transition-all duration-150 hover:bg-[rgba(var(--iphone-gray-medium),1)] hover:translate-y-[-2px] hover:shadow-md cursor-pointer">
-                                    <div className="h-10 w-10 rounded-full flex items-center justify-center mr-3 overflow-hidden">
-                                      <Image 
-                                        src={`/payment-icons/${option.icon}.${option.iconFormat}`} 
-                                        alt={option.name} 
-                                        width={40} 
-                                        height={40} 
-                                        className="object-cover" 
-                                      />
-                                    </div>
-                                    <div className="flex-1">
-                                      <h3 className="font-medium text-sm">{option.name}</h3>
-                                      <p className="text-[rgba(255,255,255,0.6)] text-xs">{option.handle}</p>
-                                    </div>
-                                    <div className="h-5 w-5 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-150">
-                                      <svg width="8" height="12" viewBox="0 0 8 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M1.5 1L6.5 6L1.5 11" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                                      </svg>
-                                    </div>
-                                  </div>
-                                </a>
-                              );
-                            })}
+                            {userData.paymentOptions.map((option: PaymentOptionForDemo, index: number) => (
+                              <PaymentOption 
+                                key={index}
+                                icon={option.icon} 
+                                name={option.name} 
+                                handle={option.handle} 
+                                color={option.color} 
+                                iconFormat={option.iconFormat}
+                                paypalAmount={option.paypalAmount}
+                              />
+                            ))}
                           </div>
                         </div>
                       </div>

@@ -78,35 +78,46 @@ export default function ProfilePage() {
                     <h3 className="text-xl font-bold text-white/90 mb-3">
                       {hasProfileData ? "Your Personal Payment Link" : "Your Link has not been created yet"}
                     </h3>
-                    <div className="flex items-center">
-                      <div className={`bg-[rgba(15,15,20,0.5)] px-4 py-3 rounded-l-lg border-y border-l border-[rgba(255,255,255,0.1)] flex-1 font-mono ${!hasProfileData ? 'text-[rgba(220,38,38,1)]' : 'text-[rgba(var(--accent-color),1)]'} truncate`}>
-                        trypaid.io/{userProfile.username}
-                      </div>
-                      <button 
-                        onClick={(e) => {
-                          e.preventDefault();
-                          e.stopPropagation();
-                          copyToClipboard();
-                        }}
-                        type="button"
-                        className={`${!hasProfileData ? 'bg-[rgba(220,38,38,0.9)] hover:bg-[rgba(220,38,38,1)] border-[rgba(220,38,38,0.6)] shadow-[0_4px_12px_rgba(220,38,38,0.2)] hover:shadow-[0_4px_20px_rgba(220,38,38,0.4)]' : 'bg-[rgba(var(--accent-color),0.9)] hover:bg-[rgba(var(--accent-color),1)] border-[rgba(var(--accent-color),0.6)] shadow-[0_4px_12px_rgba(var(--accent-color),0.2)] hover:shadow-[0_4px_20px_rgba(var(--accent-color),0.4)]'} px-4 py-3 rounded-r-lg border text-white font-medium transition-all flex items-center relative z-20 cursor-pointer`}
-                      >
-                        {copied ? (
-                          <>
-                            <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                    <div className="flex items-center space-x-2">
+                      <div className={`flex-1 flex items-center bg-[rgba(15,15,20,0.5)] px-4 py-3 rounded-lg border border-[rgba(255,255,255,0.1)]`}>
+                        <div className={`flex-1 font-mono ${!hasProfileData ? 'text-[rgba(220,38,38,1)]' : 'text-[rgba(var(--accent-color),1)]'} truncate`}>
+                          trypaid.io/{userProfile.username}
+                        </div>
+                        <button 
+                          onClick={(e) => {
+                            e.preventDefault();
+                            e.stopPropagation();
+                            copyToClipboard();
+                          }}
+                          type="button"
+                          className={`ml-2 flex items-center justify-center h-8 w-8 rounded-md ${!hasProfileData ? 'bg-[rgba(220,38,38,0.2)] hover:bg-[rgba(220,38,38,0.3)] text-[rgba(220,38,38,1)]' : 'bg-[rgba(var(--accent-color),0.2)] hover:bg-[rgba(var(--accent-color),0.3)] text-[rgba(var(--accent-color),1)]'} transition-all`}
+                          aria-label="Copy link"
+                          title="Copy link"
+                        >
+                          {copied ? (
+                            <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                               <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                             </svg>
-                            Copied
-                          </>
-                        ) : (
-                          <>
-                            <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                              <path strokeLinecap="round" strokeLinejoin="round" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3" />
+                          ) : (
+                            <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                              <path strokeLinecap="round" strokeLinejoin="round" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
                             </svg>
-                            Copy
-                          </>
-                        )}
-                      </button>
+                          )}
+                        </button>
+                      </div>
+                      <Link 
+                        href={hasProfileData ? `/${userProfile.username}` : "#"}
+                        onClick={!hasProfileData ? (e) => e.preventDefault() : undefined}
+                        target={hasProfileData ? "_blank" : undefined}
+                        rel={hasProfileData ? "noopener noreferrer" : undefined}
+                        className={`${!hasProfileData ? 'bg-[rgba(220,38,38,0.9)] hover:bg-[rgba(220,38,38,1)] border-[rgba(220,38,38,0.6)] shadow-[0_4px_12px_rgba(220,38,38,0.2)] hover:shadow-[0_4px_20px_rgba(220,38,38,0.4)] opacity-50 cursor-not-allowed' : 'bg-[rgba(var(--accent-color),0.9)] hover:bg-[rgba(var(--accent-color),1)] border-[rgba(var(--accent-color),0.6)] shadow-[0_4px_12px_rgba(var(--accent-color),0.2)] hover:shadow-[0_4px_20px_rgba(var(--accent-color),0.4)]'} flex-shrink-0 px-4 py-3 rounded-lg border text-white font-medium transition-all flex items-center relative z-20`}
+                        aria-disabled={!hasProfileData}
+                      >
+                        <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                        </svg>
+                        Visit
+                      </Link>
                     </div>
                     <p className="mt-3 text-white/60 text-sm">
                       {hasProfileData 

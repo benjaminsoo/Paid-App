@@ -30,6 +30,15 @@ export default function ProfilePage() {
     }
   };
 
+  // Check if profile has been set up
+  const hasProfileData = userProfile?.profile && 
+    (userProfile.profile.name || 
+     userProfile.profile.location || 
+     userProfile.profile.profileImageUrl || 
+     userProfile.profile.backgroundImageUrl ||
+     (userProfile.profile.paymentMethods && 
+      userProfile.profile.paymentMethods.some((method: { value: string }) => method.value)));
+
   return (
     <ProtectedRoute>
       <main className="h-screen overflow-y-auto overflow-x-hidden overscroll-behavior-y-none bg-[rgb(var(--background-rgb))] text-white flex flex-col">
@@ -62,13 +71,15 @@ export default function ProfilePage() {
               {/* Profile URL Card - Special Styling */}
               {userProfile?.username && (
                 <div className="mb-10 transform perspective-1000 overflow-x-auto">
-                  <div className="relative bg-gradient-to-b from-[rgba(var(--accent-color),0.15)] to-[rgba(var(--accent-color),0.05)] p-6 rounded-2xl shadow-[0_10px_30px_rgba(var(--accent-color),0.1)] border border-[rgba(var(--accent-color),0.2)] overflow-hidden group hover:shadow-[0_15px_35px_rgba(var(--accent-color),0.2)] transition-all duration-300 hover:-translate-y-1 min-w-[300px]">
-                    <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-[rgba(var(--accent-color),0.6)] to-transparent"></div>
-                    <div className="absolute -top-40 -right-40 w-80 h-80 opacity-20 bg-[rgba(var(--accent-color),0.4)] rounded-full blur-3xl group-hover:opacity-30 transition-opacity"></div>
+                  <div className={`relative ${!hasProfileData ? 'bg-gradient-to-b from-[rgba(220,38,38,0.15)] to-[rgba(220,38,38,0.05)] border-[rgba(220,38,38,0.2)]' : 'bg-gradient-to-b from-[rgba(var(--accent-color),0.15)] to-[rgba(var(--accent-color),0.05)] border-[rgba(var(--accent-color),0.2)]'} p-6 rounded-2xl shadow-[0_4px_20px_rgba(0,0,0,0.15)] border overflow-hidden group hover:shadow-[0_4px_25px_rgba(0,0,0,0.25)] transition-all duration-300 min-w-[300px]`}>
+                    <div className={`absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent ${!hasProfileData ? 'via-[rgba(220,38,38,0.6)]' : 'via-[rgba(var(--accent-color),0.6)]'} to-transparent`}></div>
+                    <div className={`absolute -top-40 -right-40 w-80 h-80 opacity-20 ${!hasProfileData ? 'bg-[rgba(220,38,38,0.4)]' : 'bg-[rgba(var(--accent-color),0.4)]'} rounded-full blur-3xl group-hover:opacity-30 transition-opacity`}></div>
                     
-                    <h3 className="text-xl font-bold text-white/90 mb-3">Your Personal Payment Link</h3>
+                    <h3 className="text-xl font-bold text-white/90 mb-3">
+                      {hasProfileData ? "Your Personal Payment Link" : "Your Link has not been created yet"}
+                    </h3>
                     <div className="flex items-center">
-                      <div className="bg-[rgba(15,15,20,0.5)] px-4 py-3 rounded-l-lg border-y border-l border-[rgba(255,255,255,0.1)] flex-1 font-mono text-[rgba(var(--accent-color),1)] truncate">
+                      <div className={`bg-[rgba(15,15,20,0.5)] px-4 py-3 rounded-l-lg border-y border-l border-[rgba(255,255,255,0.1)] flex-1 font-mono ${!hasProfileData ? 'text-[rgba(220,38,38,1)]' : 'text-[rgba(var(--accent-color),1)]'} truncate`}>
                         trypaid.io/{userProfile.username}
                       </div>
                       <button 
@@ -78,7 +89,7 @@ export default function ProfilePage() {
                           copyToClipboard();
                         }}
                         type="button"
-                        className="bg-[rgba(var(--accent-color),0.9)] hover:bg-[rgba(var(--accent-color),1)] px-4 py-3 rounded-r-lg border border-[rgba(var(--accent-color),0.6)] text-white font-medium transition-all shadow-[0_4px_12px_rgba(var(--accent-color),0.2)] hover:shadow-[0_4px_20px_rgba(var(--accent-color),0.4)] flex items-center relative z-20 cursor-pointer"
+                        className={`${!hasProfileData ? 'bg-[rgba(220,38,38,0.9)] hover:bg-[rgba(220,38,38,1)] border-[rgba(220,38,38,0.6)] shadow-[0_4px_12px_rgba(220,38,38,0.2)] hover:shadow-[0_4px_20px_rgba(220,38,38,0.4)]' : 'bg-[rgba(var(--accent-color),0.9)] hover:bg-[rgba(var(--accent-color),1)] border-[rgba(var(--accent-color),0.6)] shadow-[0_4px_12px_rgba(var(--accent-color),0.2)] hover:shadow-[0_4px_20px_rgba(var(--accent-color),0.4)]'} px-4 py-3 rounded-r-lg border text-white font-medium transition-all flex items-center relative z-20 cursor-pointer`}
                       >
                         {copied ? (
                           <>
@@ -97,7 +108,11 @@ export default function ProfilePage() {
                         )}
                       </button>
                     </div>
-                    <p className="mt-3 text-white/60 text-sm">Share this link with anyone to receive payments through any of your configured methods.</p>
+                    <p className="mt-3 text-white/60 text-sm">
+                      {hasProfileData 
+                        ? "Share this link with anyone to receive payments through any of your configured methods."
+                        : "This is what your link address will be after you create it."}
+                    </p>
                   </div>
                 </div>
               )}
@@ -135,7 +150,7 @@ export default function ProfilePage() {
                   href="/profile/edit"
                   className="block w-full py-4 px-6 rounded-xl bg-gradient-to-br from-[rgba(var(--accent-color),0.8)] to-[rgba(var(--accent-color),0.6)] hover:from-[rgba(var(--accent-color),0.9)] hover:to-[rgba(var(--accent-color),0.7)] text-white text-center transition-all font-medium shadow-[0_4px_20px_rgba(var(--accent-color),0.3)] hover:shadow-[0_6px_30px_rgba(var(--accent-color),0.5)] active:translate-y-0.5"
                 >
-                  Edit Profile
+                  {hasProfileData ? "Edit Profile" : "Create Your Link"}
                 </Link>
               </div>
             </div>

@@ -56,6 +56,9 @@ export default function EditProfilePage() {
     ]
   });
 
+  // Check if user has filled out their profile
+  const [hasProfileData, setHasProfileData] = useState(false);
+
   // Fetch existing profile data if available
   useEffect(() => {
     const fetchProfileData = async () => {
@@ -83,6 +86,17 @@ export default function EditProfilePage() {
             
             setProfileImagePreview(profileData.profileImageUrl || "");
             setBackgroundImagePreview(profileData.backgroundImageUrl || "");
+            
+            // Check if user has already filled out profile data
+            const hasData = !!(
+              profileData.name || 
+              profileData.location || 
+              profileData.profileImageUrl || 
+              profileData.backgroundImageUrl ||
+              (profileData.paymentMethods && 
+               profileData.paymentMethods.some((method: { value: string }) => method.value))
+            );
+            setHasProfileData(hasData);
           }
         } catch (err) {
           console.error("Error fetching profile data:", err);
@@ -263,7 +277,7 @@ export default function EditProfilePage() {
         <div className="flex-1 flex items-start justify-center relative z-10 px-6 py-4 pb-20">
           <div className="max-w-3xl w-full">
             <div className="bg-[rgba(30,30,35,0.5)] backdrop-blur-xl p-8 rounded-2xl border border-[rgba(255,255,255,0.1)] mb-8">
-              <h2 className="text-2xl font-bold mb-6">Edit Your Profile</h2>
+              <h2 className="text-2xl font-bold mb-6">{hasProfileData ? "Edit Your Link" : "Create Your Link"}</h2>
               
               {error && (
                 <Alert className="mb-4 bg-red-500/10 text-red-500 border-red-500/20">
@@ -532,7 +546,7 @@ export default function EditProfilePage() {
                 >
                   {success 
                     ? "Profile updated successfully! Redirecting..." 
-                    : (loading ? "Saving..." : "Save Profile")}
+                    : (loading ? "Saving..." : hasProfileData ? "Save Profile" : "Create Profile")}
                 </button>
               </form>
             </div>

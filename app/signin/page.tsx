@@ -24,7 +24,7 @@ export default function SignIn() {
       setError("");
       setLoading(true);
       await login(email, password);
-      router.push("/");
+      router.push("/profile");
     } catch (err) {
       setError("Failed to sign in. Please check your credentials.");
       console.error(err);

@@ -32,7 +32,7 @@ interface ProfileFormData {
 
 export default function EditProfilePage() {
   const router = useRouter();
-  const { currentUser, userProfile } = useAuth();
+  const { currentUser, userProfile, refreshUserProfile } = useAuth();
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState("");
@@ -241,7 +241,11 @@ export default function EditProfilePage() {
       }
       
       setSuccess(true);
-      // Redirect immediately to profile page
+      
+      // Refresh user profile data before redirecting
+      await refreshUserProfile();
+      
+      // Redirect to profile page
       router.push(`/profile`);
     } catch (err) {
       console.error("Error updating profile:", err);

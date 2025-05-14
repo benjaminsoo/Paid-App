@@ -27,6 +27,7 @@ interface AuthContextType {
   login: (email: string, password: string) => Promise<UserCredential>;
   logout: () => Promise<void>;
   resetPassword: (email: string) => Promise<void>;
+  refreshUserProfile: () => Promise<void>;
   loading: boolean;
 }
 
@@ -78,6 +79,13 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     }
   }
 
+  // Function to manually refresh the user profile data
+  async function refreshUserProfile() {
+    if (currentUser) {
+      await fetchUserProfile(currentUser);
+    }
+  }
+
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (user) => {
       setCurrentUser(user);
@@ -101,6 +109,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     login,
     logout,
     resetPassword,
+    refreshUserProfile,
     loading
   };
 

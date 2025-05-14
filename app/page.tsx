@@ -79,19 +79,19 @@ export default function Home() {
       <div className="light-beam light-beam-2"></div>
       
       {/* Header */}
-      <header className="py-8 px-6 max-w-6xl mx-auto flex justify-between items-center relative z-20">
-        <h1 className="text-3xl font-black accent-text">Paid.</h1>
-        <div className="flex space-x-4">
+      <header className="py-6 md:py-8 px-4 md:px-6 max-w-6xl mx-auto flex justify-between items-center relative z-20">
+        <h1 className="text-2xl md:text-3xl font-black accent-text">Paid.</h1>
+        <div className="flex gap-2 md:gap-4">
           {currentUser ? (
-            <Link href="/profile" className="px-4 py-2 rounded-full border border-white/10 hover:bg-white/5 transition btn-sleek flex items-center justify-center">
+            <Link href="/profile" className="px-3 py-1.5 md:px-4 md:py-2 rounded-full border border-white/10 hover:bg-white/5 transition btn-sleek text-center text-sm md:text-base">
               My Profile
             </Link>
           ) : (
             <>
-          <Link href="/signin" className="px-4 py-2 rounded-full border border-white/10 hover:bg-white/5 transition btn-sleek flex items-center justify-center">
+          <Link href="/signin" className="px-3 py-1.5 md:px-4 md:py-2 rounded-full border border-white/10 hover:bg-white/5 transition btn-sleek text-center text-sm md:text-base">
             Sign In
           </Link>
-          <Link href="/signup" className="px-4 py-2 rounded-full bg-[rgba(var(--accent-color),1)] hover:bg-[rgba(var(--accent-color),0.9)] transition btn-sleek btn-accent flex items-center justify-center">
+          <Link href="/signup" className="px-3 py-1.5 md:px-4 md:py-2 rounded-full bg-[rgba(var(--accent-color),1)] hover:bg-[rgba(var(--accent-color),0.9)] transition btn-sleek btn-accent text-center text-sm md:text-base">
             Sign Up
           </Link>
             </>
@@ -103,19 +103,19 @@ export default function Home() {
       <section className="py-20 px-6 max-w-6xl mx-auto relative z-10">
         <div className="grid md:grid-cols-2 gap-12 items-center">
           <div>
-            <h2 className="text-5xl font-bold leading-tight fade-in">One link for all your payment methods</h2>
+            <h2 className="text-4xl md:text-5xl font-bold leading-tight fade-in">One link for all your payment methods</h2>
             <p className="mt-6 text-xl text-white/70 fade-in delay-1">From IOU to Paid. Your money shouldn't wait in someone else's wallet.</p>
-            <div className="mt-8 flex space-x-4 fade-in delay-2">
+            <div className="mt-8 flex flex-wrap gap-3 fade-in delay-2">
               {currentUser ? (
-                <Link href="/profile" className="px-8 py-4 rounded-full bg-[rgba(var(--accent-color),1)] hover:bg-[rgba(var(--accent-color),0.9)] transition font-medium btn-sleek btn-accent text-lg flex items-center justify-center">
+                <Link href="/profile" className="inline-flex px-6 py-3 md:px-8 md:py-4 w-full sm:w-auto rounded-full bg-[rgba(var(--accent-color),1)] hover:bg-[rgba(var(--accent-color),0.9)] transition font-medium md:font-semibold md:text-lg btn-sleek btn-accent text-center">
                   Manage Your Page
                 </Link>
               ) : (
-              <Link href="/signup" className="px-8 py-4 rounded-full bg-[rgba(var(--accent-color),1)] hover:bg-[rgba(var(--accent-color),0.9)] transition font-medium btn-sleek btn-accent text-lg flex items-center justify-center">
+              <Link href="/signup" className="inline-flex px-6 py-3 md:px-8 md:py-4 w-full sm:w-auto rounded-full bg-[rgba(var(--accent-color),1)] hover:bg-[rgba(var(--accent-color),0.9)] transition font-medium md:font-semibold md:text-lg btn-sleek btn-accent text-center">
                 Create Your Page
               </Link>
               )}
-              <Link href="/alexjohnson" className="px-6 py-3 rounded-full border border-white/10 hover:bg-white/5 transition font-medium btn-sleek flex items-center justify-center">
+              <Link href="/alexjohnson" className="inline-flex px-6 py-3 md:px-8 md:py-4 w-full sm:w-auto rounded-full border border-white/10 hover:bg-white/5 transition font-medium md:font-semibold md:text-lg btn-sleek text-center">
                 View Demo
               </Link>
             </div>
@@ -290,17 +290,17 @@ export default function Home() {
       */}
 
       {/* CTA Section */}
-      <section className="py-20 px-6 max-w-6xl mx-auto relative z-10">
-        <div className="bg-[rgba(var(--accent-color),0.1)] rounded-2xl p-12 text-center container-3d-accent">
-          <h2 className="text-3xl font-bold">Ready to get Paid?</h2>
-          <p className="mt-4 text-xl text-white/70 max-w-2xl mx-auto">Create your link in under 3 minutes — Free of charge.</p>
+      <section className="py-16 md:py-20 px-6 max-w-6xl mx-auto relative z-10">
+        <div className="bg-[rgba(var(--accent-color),0.1)] rounded-2xl p-8 md:p-12 text-center container-3d-accent">
+          <h2 className="text-2xl md:text-3xl font-bold">Ready to get Paid?</h2>
+          <p className="mt-4 text-lg md:text-xl text-white/70 max-w-2xl mx-auto">Create your link in under 3 minutes — Free of charge.</p>
           <div className="mt-8">
             {currentUser ? (
-              <Link href="/profile" className="px-8 py-3 rounded-full bg-[rgba(var(--accent-color),1)] hover:bg-[rgba(var(--accent-color),0.9)] transition font-medium text-lg btn-sleek btn-accent flex items-center justify-center">
+              <Link href="/profile" className="inline-flex px-6 py-3 md:px-8 md:py-4 w-full sm:w-auto rounded-full bg-[rgba(var(--accent-color),1)] hover:bg-[rgba(var(--accent-color),0.9)] transition font-medium md:font-semibold md:text-lg text-center btn-sleek btn-accent">
                 Manage Your Page
               </Link>
             ) : (
-            <Link href="/signup" className="px-8 py-3 rounded-full bg-[rgba(var(--accent-color),1)] hover:bg-[rgba(var(--accent-color),0.9)] transition font-medium text-lg btn-sleek btn-accent flex items-center justify-center">
+            <Link href="/signup" className="inline-flex px-6 py-3 md:px-8 md:py-4 w-full sm:w-auto rounded-full bg-[rgba(var(--accent-color),1)] hover:bg-[rgba(var(--accent-color),0.9)] transition font-medium md:font-semibold md:text-lg text-center btn-sleek btn-accent">
               Get Started Now
             </Link>
             )}
@@ -309,17 +309,17 @@ export default function Home() {
       </section>
 
       {/* Footer */}
-      <footer className="py-12 px-6 max-w-6xl mx-auto border-t border-white/10 relative z-10">
+      <footer className="py-8 md:py-12 px-6 max-w-6xl mx-auto border-t border-white/10 relative z-10">
         <div className="flex flex-col md:flex-row justify-between items-center">
           <h1 className="text-2xl font-black accent-text mb-4 md:mb-0">Paid.</h1>
-          <div className="flex space-x-8">
-            <Link href="/about" className="text-white/70 hover:text-white">About</Link>
-            <Link href="/privacy" className="text-white/70 hover:text-white">Privacy</Link>
-            <Link href="/terms" className="text-white/70 hover:text-white">Terms</Link>
-            <Link href="/contact" className="text-white/70 hover:text-white">Contact</Link>
+          <div className="flex flex-wrap justify-center gap-4 md:gap-8">
+            <Link href="/about" className="text-white/70 hover:text-white text-sm md:text-base">About</Link>
+            <Link href="/privacy" className="text-white/70 hover:text-white text-sm md:text-base">Privacy</Link>
+            <Link href="/terms" className="text-white/70 hover:text-white text-sm md:text-base">Terms</Link>
+            <Link href="/contact" className="text-white/70 hover:text-white text-sm md:text-base">Contact</Link>
           </div>
         </div>
-        <div className="mt-8 text-center text-white/50 text-sm">
+        <div className="mt-6 md:mt-8 text-center text-white/50 text-xs md:text-sm">
           © {new Date().getFullYear()} Paid. All rights reserved.
       </div>
       </footer>

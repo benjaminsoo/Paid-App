@@ -258,7 +258,7 @@ export default function Home() {
         <div className="grid md:grid-cols-2 gap-12 md:gap-16 items-center">
           <div className="relative order-2 md:order-1">
             {/* Mobile app integration animation */}
-            <div className="relative h-[400px] md:h-[500px] w-full mb-0 mt-8 md:mt-0">
+            <div className="relative h-[400px] md:h-[500px] w-full mb-0 mt-24 md:mt-0">
               {/* Phone outline with glow */}
               <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[240px] h-[480px] bg-[rgba(20,20,25,0.6)] rounded-[40px] border-2 border-[rgba(var(--accent-color),0.4)] shadow-[0_0_60px_rgba(var(--accent-color),0.2)] z-10 overflow-hidden app-float-animation">
                 {/* Phone screen */}

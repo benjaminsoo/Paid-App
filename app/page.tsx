@@ -80,7 +80,7 @@ export default function Home() {
       
       {/* Header */}
       <header className="py-6 md:py-8 px-4 md:px-6 max-w-6xl mx-auto flex justify-between items-center relative z-20">
-        <h1 className="text-2xl md:text-3xl font-black accent-text">Paid.</h1>
+        <h1 className="text-3xl md:text-4xl font-black accent-text">Paid.</h1>
         <div className="flex gap-2 md:gap-4">
           {currentUser ? (
             <Link href="/profile" className="px-3 py-1.5 md:px-4 md:py-2 rounded-full border border-white/10 hover:bg-white/5 transition btn-sleek text-center text-sm md:text-base">
@@ -104,7 +104,7 @@ export default function Home() {
         <div className="grid md:grid-cols-2 gap-12 items-center">
           <div>
             <h2 className="text-4xl md:text-5xl font-bold leading-tight fade-in">One link for all your payment methods</h2>
-            <p className="mt-6 text-xl text-white/70 fade-in delay-1">From IOU to Paid. Your money shouldn't wait in someone else's wallet.</p>
+            <p className="mt-6 text-xl text-white/70 fade-in delay-1">From IOU to <span className="accent-text font-black">Paid.</span> Your money shouldn't wait in someone else's wallet.</p>
             <div className="mt-8 flex flex-wrap gap-3 fade-in delay-2">
               {currentUser ? (
                 <Link href="/profile" className="inline-flex px-6 py-3 md:px-8 md:py-4 w-full sm:w-auto rounded-full bg-[rgba(var(--accent-color),1)] hover:bg-[rgba(var(--accent-color),0.9)] transition font-medium md:font-semibold md:text-lg btn-sleek btn-accent text-center">

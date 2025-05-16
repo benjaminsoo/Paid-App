@@ -26,6 +26,10 @@ interface UserData {
   createdAt?: string;
 }
 
+// Default images
+const DEFAULT_PROFILE_IMAGE = "/Paid-Default-Profile-Image.png";
+const DEFAULT_BACKGROUND_IMAGE = "/Paid-Default-Background-Image.png";
+
 // Map payment method types to display properties
 const paymentMethodProps: Record<string, { name: string; color: string; iconFormat: string; prefix?: string }> = {
   "venmo": { name: "Venmo", color: "bg-[#3D95CE]", iconFormat: "png", prefix: "@" },
@@ -115,8 +119,8 @@ export default async function UserProfile({ params }: { params: { username: stri
         name={userData.profile.name || ""}
         location={userData.profile.location || ""}
         occupation="" // We don't store occupation in our data model
-        profileImage={userData.profile.profileImageUrl || "/placeholder.svg"}
-        backgroundImage={userData.profile.backgroundImageUrl || "/placeholder.svg"}
+        profileImage={userData.profile.profileImageUrl || DEFAULT_PROFILE_IMAGE}
+        backgroundImage={userData.profile.backgroundImageUrl || DEFAULT_BACKGROUND_IMAGE}
       />
 
       <div className="px-6 py-8 max-w-md mx-auto">

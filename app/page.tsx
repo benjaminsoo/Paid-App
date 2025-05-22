@@ -664,7 +664,7 @@ export default function Home() {
           <h1 className="text-2xl font-black accent-text mb-4 md:mb-0">Paid.</h1>
           <div className="flex flex-wrap justify-center gap-4 md:gap-8">
             <Link href="/about" className="text-white/70 hover:text-white text-sm md:text-base">About</Link>
-            <Link href="/privacy" className="text-white/70 hover:text-white text-sm md:text-base">Privacy</Link>
+            <Link href="/privacy-policy" className="text-white/70 hover:text-white text-sm md:text-base">Privacy</Link>
             <Link href="/terms" className="text-white/70 hover:text-white text-sm md:text-base">Terms</Link>
             <Link href="/contact" className="text-white/70 hover:text-white text-sm md:text-base">Contact</Link>
           </div>
